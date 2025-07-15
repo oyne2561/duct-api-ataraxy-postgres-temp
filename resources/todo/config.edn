@@ -1,0 +1,24 @@
+{:duct.profile/base
+ {:duct.core/project-ns todo
+
+  :duct.router/ataraxy
+  {:routes {[:get "/example"] [:todo.handler/example]}}
+
+  ;;   :todo.handler/example
+  ;;   {:db #ig/ref :duct.database/sql}}
+
+  ;;   データベースの参照を削除
+  :todo.handler/example
+  {}}
+
+ :duct.profile/dev   #duct/include "dev"
+ :duct.profile/local #duct/include "local"
+ :duct.profile/prod  {}
+
+ :duct.module/logging {}
+ :duct.module.web/api
+ {}
+ ;; SQL モジュールを一時的にコメントアウト
+ ;;  :duct.module/sql
+ ;;  {}
+ }
