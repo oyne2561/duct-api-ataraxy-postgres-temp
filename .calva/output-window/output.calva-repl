@@ -37,7 +37,7 @@ You can configure this with the setting:
 ; 
 
 ; Starting Jack-in: (cd /Users/yasuki.okuyama/dev/clj/todo; lein update-in :dependencies conj '[nrepl,"1.3.1"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.55.4"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- with-profile +dev,+repl repl :headless)
-; Using host:port 127.0.0.1:51938 ...
+; Using host:port 127.0.0.1:58132 ...
 ; Hooking up nREPL sessions ...
 ; Connected session: clj
 ; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
@@ -52,15 +52,66 @@ clj꞉user꞉> 
 :loaded
 clj꞉dev꞉> 
 (go)
-; Execution error (ConnectException) at sun.nio.ch.Net/pollConnect (Net.java:-2).
-; Connection refused
+; Execution error (IllegalArgumentException) at integrant.core/try-build-action (core.cljc:292).
+; No method in multimethod 'init-key' for dispatch value: :todo.handler/get-todos
 clj꞉dev꞉> 
-#'todo.handler.example/example
-clj꞉todo.handler.example꞉> 
-(halt)
-; Syntax error compiling at (.calva/output-window/output.calva-repl:60:1).
-; Unable to resolve symbol: halt in this context
-clj꞉todo.handler.example꞉> 
+(reset)
+; :reloading (todo.handler.todo todo.main todo.handler.example dev todo.handler.example-test user)
+; :duct.server.http.jetty/starting-server {:port 3000}
+:resumed
+clj꞉dev꞉> 
+; {:ssl-client-cert nil, :protocol HTTP/1.1, :remote-addr 0:0:0:0:0:0:0:1, :params {}, :route-params {}, :headers {sec-fetch-site none, sec-ch-ua-mobile ?0, host localhost:3000, user-agent Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36, sec-fetch-user ?1, sec-ch-ua "Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138", sec-ch-ua-platform "macOS", connection keep-alive, upgrade-insecure-requests 1, accept text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7, accept-language ja,en-US;q=0.9,en;q=0.8, sec-fetch-dest document, accept-encoding gzip, deflate, br, zstd, sec-fetch-mode navigate, cache-control max-age=0}, :server-port 3000, :muuntaja/request nil, :ataraxy/result [:todo.handler/get-todos], :content-length nil, :form-params {}, :query-params {}, :content-type nil, :character-encoding nil, :uri /todos, :server-name localhost, :query-string nil, :muuntaja/response #FormatAndCharset{:format application/json, :charset utf-8, :raw-format text/html}, :body #object[org.eclipse.jetty.server.HttpInputOverHTTP 0x34949378 HttpInputOverHTTP@34949378[c=0,q=0,[0]=null,s=STREAM]], :scheme :http, :request-method :get}
+; get-todos
+; {:ssl-client-cert nil, :protocol HTTP/1.1, :remote-addr 0:0:0:0:0:0:0:1, :params {}, :route-params {}, :headers {sec-fetch-site none, sec-ch-ua-mobile ?0, host localhost:3000, user-agent Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36, sec-fetch-user ?1, sec-ch-ua "Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138", sec-ch-ua-platform "macOS", connection keep-alive, upgrade-insecure-requests 1, accept text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7, accept-language ja,en-US;q=0.9,en;q=0.8, sec-fetch-dest document, accept-encoding gzip, deflate, br, zstd, sec-fetch-mode navigate, cache-control max-age=0}, :server-port 3000, :muuntaja/request nil, :ataraxy/result [:todo.handler/get-todos], :content-length nil, :form-params {}, :query-params {}, :content-type nil, :character-encoding nil, :uri /todos, :server-name localhost, :query-string nil, :muuntaja/response #FormatAndCharset{:format application/json, :charset utf-8, :raw-format text/html}, :body #object[org.eclipse.jetty.server.HttpInputOverHTTP 0x34949378 HttpInputOverHTTP@34949378[c=0,q=0,[0]=null,s=STREAM]], :scheme :http, :request-method :get}
+; get-todos
+#'todo.handler.todo/get-todos
+clj꞉todo.handler.todo꞉> 
+; {:ssl-client-cert nil, :protocol HTTP/1.1, :remote-addr 0:0:0:0:0:0:0:1, :params {}, :route-params {}, :headers {sec-fetch-site none, sec-ch-ua-mobile ?0, host localhost:3000, user-agent Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36, sec-fetch-user ?1, sec-ch-ua "Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138", sec-ch-ua-platform "macOS", connection keep-alive, upgrade-insecure-requests 1, accept text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7, accept-language ja,en-US;q=0.9,en;q=0.8, sec-fetch-dest document, accept-encoding gzip, deflate, br, zstd, sec-fetch-mode navigate, cache-control max-age=0}, :server-port 3000, :muuntaja/request nil, :ataraxy/result [:todo.handler/get-todos], :content-length nil, :form-params {}, :query-params {}, :content-type nil, :character-encoding nil, :uri /todos, :server-name localhost, :query-string nil, :muuntaja/response #FormatAndCharset{:format application/json, :charset utf-8, :raw-format text/html}, :body #object[org.eclipse.jetty.server.HttpInputOverHTTP 0x34949378 HttpInputOverHTTP@34949378[c=0,q=0,[0]=null,s=STREAM]], :scheme :http, :request-method :get}
+; get-todos
+; {:ssl-client-cert nil, :protocol HTTP/1.1, :remote-addr 0:0:0:0:0:0:0:1, :params {}, :route-params {}, :headers {sec-fetch-site none, sec-ch-ua-mobile ?0, host localhost:3000, user-agent Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36, sec-fetch-user ?1, sec-ch-ua "Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138", sec-ch-ua-platform "macOS", connection keep-alive, upgrade-insecure-requests 1, accept text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7, accept-language ja,en-US;q=0.9,en;q=0.8, sec-fetch-dest document, accept-encoding gzip, deflate, br, zstd, sec-fetch-mode navigate, cache-control max-age=0}, :server-port 3000, :muuntaja/request nil, :ataraxy/result [:todo.handler/get-todos], :content-length nil, :form-params {}, :query-params {}, :content-type nil, :character-encoding nil, :uri /todos, :server-name localhost, :query-string nil, :muuntaja/response #FormatAndCharset{:format application/json, :charset utf-8, :raw-format text/html}, :body #object[org.eclipse.jetty.server.HttpInputOverHTTP 0x34949378 HttpInputOverHTTP@34949378[c=0,q=0,[0]=null,s=STREAM]], :scheme :http, :request-method :get}
+; get-todos
+; {:ssl-client-cert nil, :protocol HTTP/1.1, :remote-addr 0:0:0:0:0:0:0:1, :params {}, :route-params {}, :headers {sec-fetch-site none, sec-ch-ua-mobile ?0, host localhost:3000, user-agent Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36, sec-fetch-user ?1, sec-ch-ua "Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138", sec-ch-ua-platform "macOS", connection keep-alive, upgrade-insecure-requests 1, accept text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7, accept-language ja,en-US;q=0.9,en;q=0.8, sec-fetch-dest document, accept-encoding gzip, deflate, br, zstd, sec-fetch-mode navigate, cache-control max-age=0}, :server-port 3000, :muuntaja/request nil, :ataraxy/result [:todo.handler/get-todos], :content-length nil, :form-params {}, :query-params {}, :content-type nil, :character-encoding nil, :uri /todos, :server-name localhost, :query-string nil, :muuntaja/response #FormatAndCharset{:format application/json, :charset utf-8, :raw-format text/html}, :body #object[org.eclipse.jetty.server.HttpInputOverHTTP 0x34949378 HttpInputOverHTTP@34949378[c=0,q=0,[0]=null,s=STREAM]], :scheme :http, :request-method :get}
+; get-todos
+; {:ssl-client-cert nil, :protocol HTTP/1.1, :remote-addr 0:0:0:0:0:0:0:1, :params {}, :route-params {}, :headers {sec-fetch-site none, sec-ch-ua-mobile ?0, host localhost:3000, user-agent Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36, sec-fetch-user ?1, sec-ch-ua "Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138", sec-ch-ua-platform "macOS", connection keep-alive, upgrade-insecure-requests 1, accept text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7, accept-language ja,en-US;q=0.9,en;q=0.8, sec-fetch-dest document, accept-encoding gzip, deflate, br, zstd, sec-fetch-mode navigate, cache-control max-age=0}, :server-port 3000, :muuntaja/request nil, :ataraxy/result [:todo.handler/get-todos], :content-length nil, :form-params {}, :query-params {}, :content-type nil, :character-encoding nil, :uri /todos, :server-name localhost, :query-string nil, :muuntaja/response #FormatAndCharset{:format application/json, :charset utf-8, :raw-format text/html}, :body #object[org.eclipse.jetty.server.HttpInputOverHTTP 0x34949378 HttpInputOverHTTP@34949378[c=0,q=0,[0]=null,s=STREAM]], :scheme :http, :request-method :get}
+; get-todos
+; {:ssl-client-cert nil, :protocol HTTP/1.1, :remote-addr 0:0:0:0:0:0:0:1, :params {}, :route-params {}, :headers {sec-fetch-site none, sec-ch-ua-mobile ?0, host localhost:3000, user-agent Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36, sec-fetch-user ?1, sec-ch-ua "Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138", sec-ch-ua-platform "macOS", connection keep-alive, upgrade-insecure-requests 1, accept text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7, accept-language ja,en-US;q=0.9,en;q=0.8, sec-fetch-dest document, accept-encoding gzip, deflate, br, zstd, sec-fetch-mode navigate, cache-control max-age=0}, :server-port 3000, :muuntaja/request nil, :ataraxy/result [:todo.handler/get-todos], :content-length nil, :form-params {}, :query-params {}, :content-type nil, :character-encoding nil, :uri /todos, :server-name localhost, :query-string nil, :muuntaja/response #FormatAndCharset{:format application/json, :charset utf-8, :raw-format text/html}, :body #object[org.eclipse.jetty.server.HttpInputOverHTTP 0x34949378 HttpInputOverHTTP@34949378[c=0,q=0,[0]=null,s=STREAM]], :scheme :http, :request-method :get}
+; get-todos
+#'todo.handler.todo/get-todos
+clj꞉todo.handler.todo꞉> 
+; {:ssl-client-cert nil, :protocol HTTP/1.1, :remote-addr 0:0:0:0:0:0:0:1, :params {}, :route-params {}, :headers {sec-fetch-site none, sec-ch-ua-mobile ?0, host localhost:3000, user-agent Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36, sec-fetch-user ?1, sec-ch-ua "Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138", sec-ch-ua-platform "macOS", connection keep-alive, upgrade-insecure-requests 1, accept text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7, accept-language ja,en-US;q=0.9,en;q=0.8, sec-fetch-dest document, accept-encoding gzip, deflate, br, zstd, sec-fetch-mode navigate, cache-control max-age=0}, :server-port 3000, :muuntaja/request nil, :ataraxy/result [:todo.handler/get-todos], :content-length nil, :form-params {}, :query-params {}, :content-type nil, :character-encoding nil, :uri /todos, :server-name localhost, :query-string nil, :muuntaja/response #FormatAndCharset{:format application/json, :charset utf-8, :raw-format text/html}, :body #object[org.eclipse.jetty.server.HttpInputOverHTTP 0x34949378 HttpInputOverHTTP@34949378[c=0,q=0,[0]=null,s=STREAM]], :scheme :http, :request-method :get}
+; get-todos
+; {:ssl-client-cert nil, :protocol HTTP/1.1, :remote-addr 0:0:0:0:0:0:0:1, :params {}, :route-params {}, :headers {sec-fetch-site none, sec-ch-ua-mobile ?0, host localhost:3000, user-agent Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36, sec-fetch-user ?1, sec-ch-ua "Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138", sec-ch-ua-platform "macOS", connection keep-alive, upgrade-insecure-requests 1, accept text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7, accept-language ja,en-US;q=0.9,en;q=0.8, sec-fetch-dest document, accept-encoding gzip, deflate, br, zstd, sec-fetch-mode navigate, cache-control max-age=0}, :server-port 3000, :muuntaja/request nil, :ataraxy/result [:todo.handler/get-todos], :content-length nil, :form-params {}, :query-params {}, :content-type nil, :character-encoding nil, :uri /todos, :server-name localhost, :query-string nil, :muuntaja/response #FormatAndCharset{:format application/json, :charset utf-8, :raw-format text/html}, :body #object[org.eclipse.jetty.server.HttpInputOverHTTP 0x34949378 HttpInputOverHTTP@34949378[c=0,q=0,[0]=null,s=STREAM]], :scheme :http, :request-method :get}
+; get-todos
+; {:ssl-client-cert nil, :protocol HTTP/1.1, :remote-addr 0:0:0:0:0:0:0:1, :params {}, :route-params {}, :headers {sec-fetch-site none, sec-ch-ua-mobile ?0, host localhost:3000, user-agent Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36, sec-fetch-user ?1, sec-ch-ua "Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138", sec-ch-ua-platform "macOS", connection keep-alive, upgrade-insecure-requests 1, accept text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7, accept-language ja,en-US;q=0.9,en;q=0.8, sec-fetch-dest document, accept-encoding gzip, deflate, br, zstd, sec-fetch-mode navigate, cache-control max-age=0}, :server-port 3000, :muuntaja/request nil, :ataraxy/result [:todo.handler/get-todos], :content-length nil, :form-params {}, :query-params {}, :content-type nil, :character-encoding nil, :uri /todos, :server-name localhost, :query-string nil, :muuntaja/response #FormatAndCharset{:format application/json, :charset utf-8, :raw-format text/html}, :body #object[org.eclipse.jetty.server.HttpInputOverHTTP 0x34949378 HttpInputOverHTTP@34949378[c=0,q=0,[0]=null,s=STREAM]], :scheme :http, :request-method :get}
+; get-todos
+; {:ssl-client-cert nil, :protocol HTTP/1.1, :remote-addr 0:0:0:0:0:0:0:1, :params {}, :route-params {}, :headers {sec-fetch-site none, sec-ch-ua-mobile ?0, host localhost:3000, user-agent Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36, sec-fetch-user ?1, sec-ch-ua "Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138", sec-ch-ua-platform "macOS", connection keep-alive, upgrade-insecure-requests 1, accept text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7, accept-language ja,en-US;q=0.9,en;q=0.8, sec-fetch-dest document, accept-encoding gzip, deflate, br, zstd, sec-fetch-mode navigate, cache-control max-age=0}, :server-port 3000, :muuntaja/request nil, :ataraxy/result [:todo.handler/get-todos], :content-length nil, :form-params {}, :query-params {}, :content-type nil, :character-encoding nil, :uri /todos, :server-name localhost, :query-string nil, :muuntaja/response #FormatAndCharset{:format application/json, :charset utf-8, :raw-format text/html}, :body #object[org.eclipse.jetty.server.HttpInputOverHTTP 0x34949378 HttpInputOverHTTP@34949378[c=0,q=0,[0]=null,s=STREAM]], :scheme :http, :request-method :get}
+; get-todos
+; {:ssl-client-cert nil, :protocol HTTP/1.1, :remote-addr 0:0:0:0:0:0:0:1, :params {}, :route-params {}, :headers {sec-fetch-site none, sec-ch-ua-mobile ?0, host localhost:3000, user-agent Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36, sec-fetch-user ?1, sec-ch-ua "Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138", sec-ch-ua-platform "macOS", connection keep-alive, upgrade-insecure-requests 1, accept text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7, accept-language ja,en-US;q=0.9,en;q=0.8, sec-fetch-dest document, accept-encoding gzip, deflate, br, zstd, sec-fetch-mode navigate, cache-control max-age=0}, :server-port 3000, :muuntaja/request nil, :ataraxy/result [:todo.handler/get-todos], :content-length nil, :form-params {}, :query-params {}, :content-type nil, :character-encoding nil, :uri /todos, :server-name localhost, :query-string nil, :muuntaja/response #FormatAndCharset{:format application/json, :charset utf-8, :raw-format text/html}, :body #object[org.eclipse.jetty.server.HttpInputOverHTTP 0x34949378 HttpInputOverHTTP@34949378[c=0,q=0,[0]=null,s=STREAM]], :scheme :http, :request-method :get}
+; get-todos
+; {:ssl-client-cert nil, :protocol HTTP/1.1, :remote-addr 0:0:0:0:0:0:0:1, :params {}, :route-params {}, :headers {sec-fetch-site none, sec-ch-ua-mobile ?0, host localhost:3000, user-agent Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36, sec-fetch-user ?1, sec-ch-ua "Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138", sec-ch-ua-platform "macOS", connection keep-alive, upgrade-insecure-requests 1, accept text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7, accept-language ja,en-US;q=0.9,en;q=0.8, sec-fetch-dest document, accept-encoding gzip, deflate, br, zstd, sec-fetch-mode navigate, cache-control max-age=0}, :server-port 3000, :muuntaja/request nil, :ataraxy/result [:todo.handler/get-todos], :content-length nil, :form-params {}, :query-params {}, :content-type nil, :character-encoding nil, :uri /todos, :server-name localhost, :query-string nil, :muuntaja/response #FormatAndCharset{:format application/json, :charset utf-8, :raw-format text/html}, :body #object[org.eclipse.jetty.server.HttpInputOverHTTP 0x34949378 HttpInputOverHTTP@34949378[c=0,q=0,[0]=null,s=STREAM]], :scheme :http, :request-method :get}
+; get-todos
+; {:ssl-client-cert nil, :protocol HTTP/1.1, :remote-addr 0:0:0:0:0:0:0:1, :params {}, :route-params {}, :headers {sec-fetch-site none, sec-ch-ua-mobile ?0, host localhost:3000, user-agent Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36, sec-fetch-user ?1, sec-ch-ua "Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138", sec-ch-ua-platform "macOS", connection keep-alive, upgrade-insecure-requests 1, accept text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7, accept-language ja,en-US;q=0.9,en;q=0.8, sec-fetch-dest document, accept-encoding gzip, deflate, br, zstd, sec-fetch-mode navigate, cache-control max-age=0}, :server-port 3000, :muuntaja/request nil, :ataraxy/result [:todo.handler/get-todos], :content-length nil, :form-params {}, :query-params {}, :content-type nil, :character-encoding nil, :uri /todos, :server-name localhost, :query-string nil, :muuntaja/response #FormatAndCharset{:format application/json, :charset utf-8, :raw-format text/html}, :body #object[org.eclipse.jetty.server.HttpInputOverHTTP 0x34949378 HttpInputOverHTTP@34949378[c=0,q=0,[0]=null,s=STREAM]], :scheme :http, :request-method :get}
+; get-todos
+(reset)
+; Syntax error compiling at (.calva/output-window/output.calva-repl:95:1).
+; Unable to resolve symbol: reset in this context
+clj꞉todo.handler.todo꞉> 
+(in-ns 'dev)
+#namespace[dev]
+clj꞉dev꞉> 
+(reset)
+; :reloading (todo.handler.todo)
+:resumed
+clj꞉dev꞉> 
+(reset)
+; :reloading (todo.handler.todo)
+; Execution error at integrant.core/read-string (core.cljc:155).
+; Map literal must contain an even number of forms
+clj꞉dev꞉> 
+(reset)
+; :reloading ()
+:resumed
+clj꞉dev꞉> 
 ; nREPL Connection was closed
 ; Jacking in...
 ; Connecting using "Leiningen" project type.
@@ -69,9 +120,9 @@ clj꞉todo.handler.example꞉> 
 ; 
 
 ; Starting Jack-in: (cd /Users/yasuki.okuyama/dev/clj/todo; lein update-in :dependencies conj '[nrepl,"1.3.1"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.55.4"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- with-profile +dev,+repl repl :headless)
-; Using host:port 127.0.0.1:52062 ...
+; Using host:port 127.0.0.1:58728 ...
 ; Hooking up nREPL sessions ...
-(); Connected session: clj
+; Connected session: clj
 ; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
 nil
 clj꞉user꞉> 
@@ -82,24 +133,261 @@ clj꞉user꞉> 
 clj꞉dev꞉> 
 (go)
 ; Execution error (IllegalArgumentException) at integrant.core/try-build-action (core.cljc:292).
-; No method in multimethod 'init-key' for dispatch value: :todo.handler/example
-clj꞉dev꞉> 
-#multifn[init-key 0x28f2a88a]
-clj꞉todo.handler.example꞉> 
-(in-ns 'dev)
-#namespace[dev]
-clj꞉dev꞉> 
-(go)
-; :duct.server.http.jetty/starting-server {:port 3000}
-; Execution error (BindException) at sun.nio.ch.Net/bind0 (Net.java:-2).
-; Address already in use
+; No method in multimethod 'init-key' for dispatch value: :todo.handler/create-todo
 clj꞉dev꞉> 
 (reset)
-; :reloading (todo.main todo.handler.example dev todo.handler.example-test user)
+; :reloading (todo.handler.todo todo.main todo.handler.example dev todo.handler.example-test user)
 ; :duct.server.http.jetty/starting-server {:port 3000}
 :resumed
 clj꞉dev꞉> 
-(halt)
-; :duct.server.http.jetty/stopping-server
-:halted
+(reset)
+; :reloading ()
+:resumed
+clj꞉dev꞉> 
+; clojure.lang.ArityException: Wrong number of args (1) passed to: todo.handler.todo/get-todo
+;                                 AFn.java:429 clojure.lang.AFn.throwArity
+;                                  AFn.java:32 clojure.lang.AFn.invoke
+;                                 core.clj:307 ataraxy.core/apply-handler
+;                                 core.clj:304 ataraxy.core/apply-handler
+;                                 core.clj:340 ataraxy.core/handler[fn]
+;                                   web.clj:77 duct.middleware.web/wrap-not-found[fn]
+;                            middleware.clj:73 muuntaja.middleware/wrap-format[fn]
+;                        keyword_params.clj:53 ring.middleware.keyword-params/wrap-keyword-params[fn]
+;                                params.clj:67 ring.middleware.params/wrap-params[fn]
+;                    absolute_redirects.clj:47 ring.middleware.absolute-redirects/wrap-absolute-redirects[fn]
+;                          content_type.clj:34 ring.middleware.content-type/wrap-content-type[fn]
+;                       default_charset.clj:31 ring.middleware.default-charset/wrap-default-charset[fn]
+;                          not_modified.clj:61 ring.middleware.not-modified/wrap-not-modified[fn]
+;                                   web.clj:28 duct.middleware.web/wrap-log-requests[fn]
+;                                   web.clj:39 duct.middleware.web/wrap-log-errors[fn]
+;                            stacktrace.clj:27 ring.middleware.stacktrace/wrap-stacktrace-log[fn]
+;                            stacktrace.clj:99 ring.middleware.stacktrace/wrap-stacktrace-web[fn]
+;                                 jetty.clj:18 duct.server.http.jetty/eval22587[fn]
+;                                 jetty.clj:27 ring.adapter.jetty/proxy-handler[fn]
+;                             (Unknown Source) ring.adapter.jetty.proxy$org.eclipse.jetty.server.handler.AbstractHandler$ff19274a.handle
+;                      HandlerWrapper.java:127 org.eclipse.jetty.server.handler.HandlerWrapper.handle
+;                              Server.java:500 org.eclipse.jetty.server.Server.handle
+;                         HttpChannel.java:383 org.eclipse.jetty.server.HttpChannel.lambda$handle$1
+;                         HttpChannel.java:547 org.eclipse.jetty.server.HttpChannel.dispatch
+;                         HttpChannel.java:375 org.eclipse.jetty.server.HttpChannel.handle
+;                      HttpConnection.java:273 org.eclipse.jetty.server.HttpConnection.onFillable
+;                  AbstractConnection.java:311 org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded
+;                        FillInterest.java:103 org.eclipse.jetty.io.FillInterest.fillable
+;                     ChannelEndPoint.java:117 org.eclipse.jetty.io.ChannelEndPoint$2.run
+;                      EatWhatYouKill.java:336 org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask
+;                      EatWhatYouKill.java:313 org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce
+;                      EatWhatYouKill.java:171 org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce
+;                      EatWhatYouKill.java:129 org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run
+;              ReservedThreadExecutor.java:375 org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run
+;                    QueuedThreadPool.java:806 org.eclipse.jetty.util.thread.QueuedThreadPool.runJob
+;                    QueuedThreadPool.java:938 org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run
+;                             Thread.java:1583 java.lang.Thread.run
+(reset)
+; :reloading ()
+:resumed
+clj꞉dev꞉> 
+(reset)
+; :reloading ()
+:resumed
+clj꞉dev꞉> 
+; nREPL Connection was closed
+; Jacking in...
+; Connecting using "Leiningen" project type.
+; You can make Calva auto-select this.
+;   - See https://calva.io/connect-sequences/
+; 
+
+; Starting Jack-in: (cd /Users/yasuki.okuyama/dev/clj/todo; lein update-in :dependencies conj '[nrepl,"1.3.1"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.55.4"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- with-profile +dev,+repl repl :headless)
+; Using host:port 127.0.0.1:58869 ...
+; Hooking up nREPL sessions ...
+; Connected session: clj
+; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
+nil
+clj꞉user꞉> 
+; Jack-in done.
+clj꞉user꞉> 
+(dev)
+:loaded
+clj꞉dev꞉> 
+(go)
+; Execution error (IllegalArgumentException) at integrant.core/try-build-action (core.cljc:292).
+; No method in multimethod 'init-key' for dispatch value: :todo.handler/create-todo
+clj꞉dev꞉> 
+(reset)
+; :reloading (todo.handler.todo todo.main todo.handler.example dev todo.handler.example-test user)
+; :duct.server.http.jetty/starting-server {:port 3000}
+:resumed
+clj꞉dev꞉> 
+(reset)
+; :reloading ()
+; Execution error (AssertionError) at ataraxy.core/parse (core.clj:105).
+; Assert failed: (valid? routes)
+clj꞉dev꞉> 
+(reset)
+; :reloading ()
+:resumed
+clj꞉dev꞉> 
+; clojure.lang.ArityException: Wrong number of args (1) passed to: todo.handler.todo/get-todo
+;                                  AFn.java:429 clojure.lang.AFn.throwArity
+;                                   AFn.java:32 clojure.lang.AFn.invoke
+;                                  core.clj:307 ataraxy.core/apply-handler
+;                                  core.clj:304 ataraxy.core/apply-handler
+;                                  core.clj:340 ataraxy.core/handler[fn]
+;                                    web.clj:77 duct.middleware.web/wrap-not-found[fn]
+;                             middleware.clj:73 muuntaja.middleware/wrap-format[fn]
+;                         keyword_params.clj:53 ring.middleware.keyword-params/wrap-keyword-params[fn]
+;                                 params.clj:67 ring.middleware.params/wrap-params[fn]
+;                     absolute_redirects.clj:47 ring.middleware.absolute-redirects/wrap-absolute-redirects[fn]
+;                           content_type.clj:34 ring.middleware.content-type/wrap-content-type[fn]
+;                        default_charset.clj:31 ring.middleware.default-charset/wrap-default-charset[fn]
+;                           not_modified.clj:61 ring.middleware.not-modified/wrap-not-modified[fn]
+;                                    web.clj:28 duct.middleware.web/wrap-log-requests[fn]
+;                                    web.clj:39 duct.middleware.web/wrap-log-errors[fn]
+;                             stacktrace.clj:27 ring.middleware.stacktrace/wrap-stacktrace-log[fn]
+;                             stacktrace.clj:99 ring.middleware.stacktrace/wrap-stacktrace-web[fn]
+;                                  jetty.clj:18 duct.server.http.jetty/eval22587[fn]
+;                                  jetty.clj:27 ring.adapter.jetty/proxy-handler[fn]
+;                              (Unknown Source) ring.adapter.jetty.proxy$org.eclipse.jetty.server.handler.AbstractHandler$ff19274a.handle
+;                       HandlerWrapper.java:127 org.eclipse.jetty.server.handler.HandlerWrapper.handle
+;                               Server.java:500 org.eclipse.jetty.server.Server.handle
+;                          HttpChannel.java:383 org.eclipse.jetty.server.HttpChannel.lambda$handle$1
+;                          HttpChannel.java:547 org.eclipse.jetty.server.HttpChannel.dispatch
+;                          HttpChannel.java:375 org.eclipse.jetty.server.HttpChannel.handle
+;                       HttpConnection.java:273 org.eclipse.jetty.server.HttpConnection.onFillable
+;                   AbstractConnection.java:311 org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded
+;                         FillInterest.java:103 org.eclipse.jetty.io.FillInterest.fillable
+;                      ChannelEndPoint.java:117 org.eclipse.jetty.io.ChannelEndPoint$2.run
+;                       EatWhatYouKill.java:336 org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask
+;                       EatWhatYouKill.java:313 org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce
+;                       EatWhatYouKill.java:171 org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce
+;                       EatWhatYouKill.java:135 org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.produce
+;                     QueuedThreadPool.java:806 org.eclipse.jetty.util.thread.QueuedThreadPool.runJob
+;                     QueuedThreadPool.java:938 org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run
+;                              Thread.java:1583 java.lang.Thread.run
+; clojure.lang.ArityException: Wrong number of args (1) passed to: todo.handler.todo/get-todo
+;                                 AFn.java:429 clojure.lang.AFn.throwArity
+;                                  AFn.java:32 clojure.lang.AFn.invoke
+;                                 core.clj:307 ataraxy.core/apply-handler
+;                                 core.clj:304 ataraxy.core/apply-handler
+;                                 core.clj:340 ataraxy.core/handler[fn]
+;                                   web.clj:77 duct.middleware.web/wrap-not-found[fn]
+;                            middleware.clj:73 muuntaja.middleware/wrap-format[fn]
+;                        keyword_params.clj:53 ring.middleware.keyword-params/wrap-keyword-params[fn]
+;                                params.clj:67 ring.middleware.params/wrap-params[fn]
+;                    absolute_redirects.clj:47 ring.middleware.absolute-redirects/wrap-absolute-redirects[fn]
+;                          content_type.clj:34 ring.middleware.content-type/wrap-content-type[fn]
+;                       default_charset.clj:31 ring.middleware.default-charset/wrap-default-charset[fn]
+;                          not_modified.clj:61 ring.middleware.not-modified/wrap-not-modified[fn]
+;                                   web.clj:28 duct.middleware.web/wrap-log-requests[fn]
+;                                   web.clj:39 duct.middleware.web/wrap-log-errors[fn]
+;                            stacktrace.clj:27 ring.middleware.stacktrace/wrap-stacktrace-log[fn]
+;                            stacktrace.clj:99 ring.middleware.stacktrace/wrap-stacktrace-web[fn]
+;                                 jetty.clj:18 duct.server.http.jetty/eval22587[fn]
+;                                 jetty.clj:27 ring.adapter.jetty/proxy-handler[fn]
+;                             (Unknown Source) ring.adapter.jetty.proxy$org.eclipse.jetty.server.handler.AbstractHandler$ff19274a.handle
+;                      HandlerWrapper.java:127 org.eclipse.jetty.server.handler.HandlerWrapper.handle
+;                              Server.java:500 org.eclipse.jetty.server.Server.handle
+;                         HttpChannel.java:383 org.eclipse.jetty.server.HttpChannel.lambda$handle$1
+;                         HttpChannel.java:547 org.eclipse.jetty.server.HttpChannel.dispatch
+;                         HttpChannel.java:375 org.eclipse.jetty.server.HttpChannel.handle
+;                      HttpConnection.java:273 org.eclipse.jetty.server.HttpConnection.onFillable
+;                  AbstractConnection.java:311 org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded
+;                        FillInterest.java:103 org.eclipse.jetty.io.FillInterest.fillable
+;                     ChannelEndPoint.java:117 org.eclipse.jetty.io.ChannelEndPoint$2.run
+;                      EatWhatYouKill.java:336 org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask
+;                      EatWhatYouKill.java:313 org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce
+;                      EatWhatYouKill.java:171 org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce
+;                      EatWhatYouKill.java:129 org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run
+;              ReservedThreadExecutor.java:375 org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run
+;                    QueuedThreadPool.java:806 org.eclipse.jetty.util.thread.QueuedThreadPool.runJob
+;                    QueuedThreadPool.java:938 org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run
+;                             Thread.java:1583 java.lang.Thread.run
+; clojure.lang.ArityException: Wrong number of args (1) passed to: todo.handler.todo/get-todo
+;                                 AFn.java:429 clojure.lang.AFn.throwArity
+;                                  AFn.java:32 clojure.lang.AFn.invoke
+;                                 core.clj:307 ataraxy.core/apply-handler
+;                                 core.clj:304 ataraxy.core/apply-handler
+;                                 core.clj:340 ataraxy.core/handler[fn]
+;                                   web.clj:77 duct.middleware.web/wrap-not-found[fn]
+;                            middleware.clj:73 muuntaja.middleware/wrap-format[fn]
+;                        keyword_params.clj:53 ring.middleware.keyword-params/wrap-keyword-params[fn]
+;                                params.clj:67 ring.middleware.params/wrap-params[fn]
+;                    absolute_redirects.clj:47 ring.middleware.absolute-redirects/wrap-absolute-redirects[fn]
+;                          content_type.clj:34 ring.middleware.content-type/wrap-content-type[fn]
+;                       default_charset.clj:31 ring.middleware.default-charset/wrap-default-charset[fn]
+;                          not_modified.clj:61 ring.middleware.not-modified/wrap-not-modified[fn]
+;                                   web.clj:28 duct.middleware.web/wrap-log-requests[fn]
+;                                   web.clj:39 duct.middleware.web/wrap-log-errors[fn]
+;                            stacktrace.clj:27 ring.middleware.stacktrace/wrap-stacktrace-log[fn]
+;                            stacktrace.clj:99 ring.middleware.stacktrace/wrap-stacktrace-web[fn]
+;                                 jetty.clj:18 duct.server.http.jetty/eval22587[fn]
+;                                 jetty.clj:27 ring.adapter.jetty/proxy-handler[fn]
+;                             (Unknown Source) ring.adapter.jetty.proxy$org.eclipse.jetty.server.handler.AbstractHandler$ff19274a.handle
+;                      HandlerWrapper.java:127 org.eclipse.jetty.server.handler.HandlerWrapper.handle
+;                              Server.java:500 org.eclipse.jetty.server.Server.handle
+;                         HttpChannel.java:383 org.eclipse.jetty.server.HttpChannel.lambda$handle$1
+;                         HttpChannel.java:547 org.eclipse.jetty.server.HttpChannel.dispatch
+;                         HttpChannel.java:375 org.eclipse.jetty.server.HttpChannel.handle
+;                      HttpConnection.java:273 org.eclipse.jetty.server.HttpConnection.onFillable
+;                  AbstractConnection.java:311 org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded
+;                        FillInterest.java:103 org.eclipse.jetty.io.FillInterest.fillable
+;                     ChannelEndPoint.java:117 org.eclipse.jetty.io.ChannelEndPoint$2.run
+;                      EatWhatYouKill.java:336 org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask
+;                      EatWhatYouKill.java:313 org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce
+;                      EatWhatYouKill.java:171 org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce
+;                      EatWhatYouKill.java:129 org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run
+;              ReservedThreadExecutor.java:375 org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run
+;                    QueuedThreadPool.java:806 org.eclipse.jetty.util.thread.QueuedThreadPool.runJob
+;                    QueuedThreadPool.java:938 org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run
+;                             Thread.java:1583 java.lang.Thread.run
+; nREPL Connection was closed
+; Jacking in...
+; Connecting using "Leiningen" project type.
+; You can make Calva auto-select this.
+;   - See https://calva.io/connect-sequences/
+; 
+
+; Starting Jack-in: (cd /Users/yasuki.okuyama/dev/clj/todo; lein update-in :dependencies conj '[nrepl,"1.3.1"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.55.4"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- with-profile +dev,+repl repl :headless)
+; Using host:port 127.0.0.1:59093 ...
+; Hooking up nREPL sessions ...
+; Connected session: clj
+; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
+nil
+clj꞉user꞉> 
+; Jack-in done.
+clj꞉user꞉> 
+(dev)
+:loaded
+clj꞉dev꞉> 
+(go)
+; Execution error (IllegalArgumentException) at integrant.core/try-build-action (core.cljc:292).
+; No method in multimethod 'init-key' for dispatch value: :todo.handler/create-todo
+clj꞉dev꞉> 
+(reset)
+; :reloading (todo.handler.todo todo.main todo.handler.example dev todo.handler.example-test user)
+; :duct.server.http.jetty/starting-server {:port 3000}
+:resumed
+clj꞉dev꞉> 
+; nREPL Connection was closed
+; Jacking in...
+; Connecting using "Leiningen" project type.
+; You can make Calva auto-select this.
+;   - See https://calva.io/connect-sequences/
+; 
+
+; Starting Jack-in: (cd /Users/yasuki.okuyama/dev/clj/todo; lein update-in :dependencies conj '[nrepl,"1.3.1"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.55.4"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- with-profile +dev,+repl repl :headless)
+; Using host:port 127.0.0.1:59210 ...
+; Hooking up nREPL sessions ...
+; Connected session: clj
+; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
+nil
+clj꞉user꞉> 
+; Jack-in done.
+clj꞉user꞉> 
+(dev)
+:loaded
+clj꞉dev꞉> 
+(go)
+; :duct.server.http.jetty/starting-server {:port 3000}
+:initiated
 clj꞉dev꞉> 

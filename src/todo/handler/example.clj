@@ -1,6 +1,5 @@
 (ns todo.handler.example
-  (:require [ataraxy.core :as ataraxy]
-            [ataraxy.response :as response] 
+  (:require [ataraxy.response :as response] 
             [integrant.core :as ig]))
 
 ;; ハンドラー関数を定義

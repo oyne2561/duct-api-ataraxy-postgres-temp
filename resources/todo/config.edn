@@ -2,15 +2,25 @@
  {:duct.core/project-ns todo
 
   :duct.router/ataraxy
-  {:routes {[:get "/example"] [:todo.handler/example]}}
+  {:routes {"/example" {:get [:todo.handler/example]}
+            
+            "/todos" {:get [:todo.handler/get-todos]
+                      :post [:todo.handler/create-todo]
+                      "/stats" {:get [:todo.handler/get-todos-stats]}
+                      ["/" id] {:get [:todo.handler/get-todo id]
+                                :put [:todo.handler/update-todo id]  
+                                :delete [:todo.handler/delete-todo id]}}
+            }}
 
-  ;;   :todo.handler/example
-  ;;   {:db #ig/ref :duct.database/sql}}
-
-  ;;   データベースの参照を削除
-  :todo.handler/example
-  {}}
-
+  :todo.handler/example {}
+  :todo.handler/get-todos {}
+  :todo.handler/get-todos-stats {}
+  :todo.handler/get-todo {}
+  :todo.handler/create-todo {}
+  :todo.handler/update-todo {}
+  :todo.handler/delete-todo {}
+  }
+ 
  :duct.profile/dev   #duct/include "dev"
  :duct.profile/local #duct/include "local"
  :duct.profile/prod  {}

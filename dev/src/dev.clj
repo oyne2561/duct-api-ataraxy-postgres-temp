@@ -9,7 +9,10 @@
             [eftest.runner :as eftest]
             [integrant.core :as ig]
             [integrant.repl :refer [clear halt go init prep reset]]
-            [integrant.repl.state :refer [config system]]))
+            [integrant.repl.state :refer [config system]]
+            ;; ハンドラーの名前空間を明示的にロード
+            [todo.handler.example]
+            [todo.handler.todo]))
 
 (duct/load-hierarchy)
 
