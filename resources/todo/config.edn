@@ -2,25 +2,34 @@
  {:duct.core/project-ns todo
 
   :duct.router/ataraxy
-  {:routes {"/example" {:get [:todo.handler/example]} 
-            "/todos" {:get [:todo.handler/get-todos]
-                      :post [:todo.handler/create-todo]
-                      ["/" id] {:get [:todo.handler/get-todo id]
-                                :put [:todo.handler/update-todo id]  
-                                :delete [:todo.handler/delete-todo id]}}
+  {:routes {"/example" {:get [:todo.handler/example]}
+            "/api/todos" {:get [:todo.handler/get-todos]
+                          :post [:todo.handler/create-todo]}
+            "/api/todos/stats" {:get [:todo.handler/get-todo-stats]}
+            "/api/todos/status" {:get [:todo.handler/get-todos-by-status]}
+            "/api/todos/" {id {:get [:todo.handler/get-todo id]
+                               :put [:todo.handler/update-todo id]
+                               :delete [:todo.handler/delete-todo id]
+                               "/toggle" {:post [:todo.handler/toggle-todo-completion id]}}}
             }}
 
-;;   Duct フレームワーク で使われる Integrant コンポーネント の設定
-;;   options には config.edn の {} 部分が渡される
-;;   
+  ;; Infrastructure Layer - Repository
+  :todo.gateway/todo-repository {}
+
+  ;; Application Layer - Usecase
+  :todo.usecase/todo {:repository #ig/ref :todo.gateway/todo-repository}
+
+  ;; Handler Layer - HTTP Endpoints
   :todo.handler/example {:message "カスタムメッセージ"
-                         :version "1.0.0"
-                         :aaa "aaaaaa"}
-  :todo.handler/get-todos {}
-  :todo.handler/get-todo {}
-  :todo.handler/create-todo {}
-  :todo.handler/update-todo {}
-  :todo.handler/delete-todo {}
+                         :version "1.0.0"}
+  :todo.handler/get-todos {:todo-usecase #ig/ref :todo.usecase/todo}
+  :todo.handler/get-todo {:todo-usecase #ig/ref :todo.usecase/todo}
+  :todo.handler/get-todos-by-status {:todo-usecase #ig/ref :todo.usecase/todo}
+  :todo.handler/get-todo-stats {:todo-usecase #ig/ref :todo.usecase/todo}
+  :todo.handler/create-todo {:todo-usecase #ig/ref :todo.usecase/todo}
+  :todo.handler/update-todo {:todo-usecase #ig/ref :todo.usecase/todo}
+  :todo.handler/toggle-todo-completion {:todo-usecase #ig/ref :todo.usecase/todo}
+  :todo.handler/delete-todo {:todo-usecase #ig/ref :todo.usecase/todo}
   }
  
  :duct.profile/dev   #duct/include "dev"
