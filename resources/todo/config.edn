@@ -2,19 +2,21 @@
  {:duct.core/project-ns todo
 
   :duct.router/ataraxy
-  {:routes {"/example" {:get [:todo.handler/example]}
-            
+  {:routes {"/example" {:get [:todo.handler/example]} 
             "/todos" {:get [:todo.handler/get-todos]
                       :post [:todo.handler/create-todo]
-                      "/stats" {:get [:todo.handler/get-todos-stats]}
                       ["/" id] {:get [:todo.handler/get-todo id]
                                 :put [:todo.handler/update-todo id]  
                                 :delete [:todo.handler/delete-todo id]}}
             }}
 
-  :todo.handler/example {}
+;;   Duct フレームワーク で使われる Integrant コンポーネント の設定
+;;   options には config.edn の {} 部分が渡される
+;;   
+  :todo.handler/example {:message "カスタムメッセージ"
+                         :version "1.0.0"
+                         :aaa "aaaaaa"}
   :todo.handler/get-todos {}
-  :todo.handler/get-todos-stats {}
   :todo.handler/get-todo {}
   :todo.handler/create-todo {}
   :todo.handler/update-todo {}

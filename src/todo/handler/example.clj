@@ -4,10 +4,15 @@
 
 ;; ハンドラー関数を定義
 (defn example-handler
-  [request]
-  [::response/ok {:message "Hello from Todo API!"
-                  :timestamp (java.time.Instant/now)}])
+  [request deps]
+  [::response/ok {:message (:message "デフォルトメッセージ")
+                  :timestamp (java.time.Instant/now)
+                  :deps deps
+                  :request request}])
 
 ;; Integrantコンポーネントとして登録
-(defmethod ig/init-key :todo.handler/example [_ options]
-  example-handler)
+(defmethod ig/init-key :todo.handler/example [_ deps]
+  (fn [request]
+    (example-handler request deps)))
+
+

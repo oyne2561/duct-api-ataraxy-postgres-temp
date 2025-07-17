@@ -2,26 +2,17 @@
    (:require [ataraxy.response :as response]
             [integrant.core :as ig]))
 
-;; 既存のハンドラー
-(defn get-todos [request]
-  ;; (println request)
-  ;; (println "get-todos")
-  [::response/ok {:message "get-todos"}])
-
-;; 新しいハンドラー関数
-
-(defn get-todos-stats [request]
-  [::response/ok {:message "get-todos-stats"
-                  :total-todos 42
-                  :completed 30
-                  :pending 12}])
+(defn get-todos [request] 
+  [::response/ok {:message "get-todos"
+                  :result (:ataraxy/result request)}])
 
 (defn get-todo [request]
   (let [[_ id] (:ataraxy/result request)]
     [::response/ok {:message (str "get-todo with id: " id)
                     :id id
                     :title "Sample Todo"
-                    :completed false}]))
+                    :completed false
+                    :ataraxy_result (:ataraxy/result request)}]))
 
 (defn create-todo [request]
   [::response/ok {:message "create-todo"
@@ -43,9 +34,6 @@
 ;; Integrant コンポーネント登録
 (defmethod ig/init-key :todo.handler/get-todos [_ options]
   get-todos)
-
-(defmethod ig/init-key :todo.handler/get-todos-stats [_ options]
-  get-todos-stats)
 
 (defmethod ig/init-key :todo.handler/get-todo [_ options]
   get-todo)
