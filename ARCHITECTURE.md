@@ -7,9 +7,9 @@
 ## 🏗️ アーキテクチャ概要
 
 ```
-外部 → Driver → Handler → Usecase → Domain
-                    ↓        ↓
-                Gateway ← Port
+Handler → Usecase → Domain
+              ↓        ↓
+            Gateway ← Port
 ```
 
 ### 依存関係の方向

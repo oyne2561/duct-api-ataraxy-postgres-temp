@@ -1,0 +1,46 @@
+{:duct.profile/base
+ {:duct.core/project-ns todo
+
+  :duct.router/ataraxy
+  {:routes {"/example" {:get [:todo.handler/example]}
+            "/api/todos" {:get [:todo.handler/get-todos]
+                          :post [:todo.handler/create-todo]}
+            "/api/todos/stats" {:get [:todo.handler/get-todo-stats]}
+            "/api/todos/status" {:get [:todo.handler/get-todos-by-status]}
+            "/api/todos/" {id {:get [:todo.handler/get-todo id]
+                               :put [:todo.handler/update-todo id]
+                               :delete [:todo.handler/delete-todo id]
+                               "/toggle" {:post [:todo.handler/toggle-todo-completion id]}}}
+            }}
+
+  ;; Database Configuration
+  :duct.database/sql
+  {:connection-uri #duct/env ["DATABASE_URL" "jdbc:postgresql://localhost:5432/todo_db?user=todo_user&password=todo_pass"]}
+
+  ;; Infrastructure Layer - PostgreSQL Repository
+  :todo.gateway/postgres-todo-repository {:db #ig/ref :duct.database/sql}
+
+  ;; Application Layer - Usecase (PostgreSQL版に切り替え)
+  :todo.usecase/todo {:repository #ig/ref :todo.gateway/postgres-todo-repository}
+
+  ;; Handler Layer - HTTP Endpoints (変更なし！)
+  :todo.handler/example {:message "カスタムメッセージ"
+                         :version "1.0.0"}
+  :todo.handler/get-todos {:todo-usecase #ig/ref :todo.usecase/todo}
+  :todo.handler/get-todo {:todo-usecase #ig/ref :todo.usecase/todo}
+  :todo.handler/get-todos-by-status {:todo-usecase #ig/ref :todo.usecase/todo}
+  :todo.handler/get-todo-stats {:todo-usecase #ig/ref :todo.usecase/todo}
+  :todo.handler/create-todo {:todo-usecase #ig/ref :todo.usecase/todo}
+  :todo.handler/update-todo {:todo-usecase #ig/ref :todo.usecase/todo}
+  :todo.handler/toggle-todo-completion {:todo-usecase #ig/ref :todo.usecase/todo}
+  :todo.handler/delete-todo {:todo-usecase #ig/ref :todo.usecase/todo}
+  }
+ 
+ :duct.profile/dev   #duct/include "dev"
+ :duct.profile/local #duct/include "local"
+ :duct.profile/prod  {}
+
+ :duct.module/logging {}
+ :duct.module.web/api {}
+ :duct.module/sql {}
+ } 

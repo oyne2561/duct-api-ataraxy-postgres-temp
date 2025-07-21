@@ -1,8 +1,9 @@
 (ns todo.domain.todo
   (:require [clojure.spec.alpha :as s]))
 
-;; Todo エンティティのスペック
-(s/def ::id pos-int?)
+;; :: はClojureのnamespace-qualified keywordを作成するための構文です
+;; :: を使うと、現在のnamespaceが自動的にキーワードの前に付与されます。
+(s/def ::id pos-int?)  ; これは実際には :todo.domain.todo/id と同じ
 (s/def ::title (s/and string? #(> (count %) 0)))
 (s/def ::description (s/nilable string?))
 (s/def ::completed boolean?)

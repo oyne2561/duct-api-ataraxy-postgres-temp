@@ -13,11 +13,21 @@
                                "/toggle" {:post [:todo.handler/toggle-todo-completion id]}}}
             }}
 
+  ;; Database Configuration (PostgreSQL用にコメントアウト解除)
+  ;; :duct.database/sql
+  ;; {:connection-uri #duct/env ["DATABASE_URL" "jdbc:postgresql://localhost:5432/todo_db?user=todo_user&password=todo_pass"]}
+
   ;; Infrastructure Layer - Repository
+  ;; インメモリ版（デフォルト）
   :todo.gateway/todo-repository {}
+  
+  ;; PostgreSQL版（使用する場合は上記をコメントアウトして以下を有効化）
+  ;; :todo.gateway/postgres-todo-repository {:db #ig/ref :duct.database/sql}
 
   ;; Application Layer - Usecase
   :todo.usecase/todo {:repository #ig/ref :todo.gateway/todo-repository}
+  ;; PostgreSQL版の場合は以下に変更
+  ;; :todo.usecase/todo {:repository #ig/ref :todo.gateway/postgres-todo-repository}
 
   ;; Handler Layer - HTTP Endpoints
   :todo.handler/example {:message "カスタムメッセージ"
@@ -39,7 +49,6 @@
  :duct.module/logging {}
  :duct.module.web/api
  {}
- ;; SQL モジュールを一時的にコメントアウト
- ;;  :duct.module/sql
- ;;  {}
+ ;; SQL モジュール（PostgreSQL使用時は有効化）
+ ;; :duct.module/sql {}
  }
